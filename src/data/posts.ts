@@ -66,7 +66,7 @@ export const POSTS: Readonly<Record<PostId, PostDefinition>> = {
     name: 'Guardería',
     output: 'XP pasiva para el Rancho',
     description: 'Quien cuida del resto hace que todos aprendan más rápido.',
-    unlockLevel: 9,
+    unlockLevel: 3,
     upgradeBasePrice: 15_000,
   },
 };

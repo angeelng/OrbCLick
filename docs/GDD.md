@@ -170,13 +170,13 @@ El nivel de entrenador (1–15 en el MVP) es la columna de la progresión: cada 
 | --- | --- |
 | 1 | Pradera, Orbe básico, 4 plazas de Rancho |
 | 2 | Bayas en la tienda, Huerto |
-| 3 | Equipo de combate (1 plaza) |
+| 3 | Equipo de combate (1 plaza), Guardería |
 | 4 | Orbe de red, Mina |
 | 5 | Jefe de la Pradera; Cueva tras vencerlo |
 | 6 | Equipo de 2, Taller |
 | 7 | Guantes de entrenador II |
 | 8 | Puesto de exploración, equipo de 3 |
-| 9 | Orbe lunar, Guardería |
+| 9 | Orbe lunar |
 | 10 | Jefe de la Cueva; Lago tras vencerlo |
 | 12 | Amuletos de tipo |
 | 15 | Jefe del Lago (fin del contenido del MVP) |

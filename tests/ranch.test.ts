@@ -85,7 +85,8 @@ describe('puestos y asignación', () => {
     expect(isPostUnlocked(base, 'gather')).toBe(true);
     expect(isPostUnlocked(base, 'farm')).toBe(false);
     expect(isPostUnlocked(withState({ trainer: { level: 2, xp: 0 } }), 'farm')).toBe(true);
-    expect(isPostUnlocked(withState({ trainer: { level: 9, xp: 0 } }), 'care')).toBe(true);
+    expect(isPostUnlocked(base, 'care')).toBe(false);
+    expect(isPostUnlocked(withState({ trainer: { level: 3, xp: 0 } }), 'care')).toBe(true);
   });
 
   it('asigna una criatura a un puesto abierto', () => {
