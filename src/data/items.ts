@@ -32,8 +32,10 @@ export interface UpgradeDefinition {
 /**
  * Guantes de entrenador I–V: cinco escalones repetibles de bonus plano y de
  * XP por clic. El GDD solo fija el primero (100 monedas, +1); el resto sigue
- * su curva de desbloqueo por nivel. Con los cinco al tope, el clic da algo
- * más de seis veces la XP base.
+ * su curva de desbloqueo por nivel. La XP sube bastante por unidad para que
+ * comprar guantes se note también en la barra de nivel y no solo en las
+ * monedas: con los diez primeros el clic ya da el triple de XP, y con los
+ * cinco al tope, quince veces la base.
  */
 export const UPGRADES: Readonly<Record<UpgradeId, UpgradeDefinition>> = {
   'gloves-1': {
@@ -43,7 +45,7 @@ export const UPGRADES: Readonly<Record<UpgradeId, UpgradeDefinition>> = {
     category: 'click',
     basePrice: 100,
     flatBonus: 1,
-    xpBonus: 0.06,
+    xpBonus: 0.2,
     unlockLevel: 1,
   },
   'gloves-2': {
@@ -53,7 +55,7 @@ export const UPGRADES: Readonly<Record<UpgradeId, UpgradeDefinition>> = {
     category: 'click',
     basePrice: 1_000,
     flatBonus: 5,
-    xpBonus: 0.08,
+    xpBonus: 0.25,
     unlockLevel: 7,
   },
   'gloves-3': {
@@ -63,7 +65,7 @@ export const UPGRADES: Readonly<Record<UpgradeId, UpgradeDefinition>> = {
     category: 'click',
     basePrice: 10_000,
     flatBonus: 25,
-    xpBonus: 0.1,
+    xpBonus: 0.3,
     unlockLevel: 10,
   },
   'gloves-4': {
@@ -73,7 +75,7 @@ export const UPGRADES: Readonly<Record<UpgradeId, UpgradeDefinition>> = {
     category: 'click',
     basePrice: 100_000,
     flatBonus: 120,
-    xpBonus: 0.12,
+    xpBonus: 0.35,
     unlockLevel: 12,
   },
   'gloves-5': {
@@ -83,7 +85,7 @@ export const UPGRADES: Readonly<Record<UpgradeId, UpgradeDefinition>> = {
     category: 'click',
     basePrice: 1_000_000,
     flatBonus: 600,
-    xpBonus: 0.15,
+    xpBonus: 0.4,
     unlockLevel: 15,
   },
 };
