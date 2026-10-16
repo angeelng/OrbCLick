@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orbclick · progreso de desarrollo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pixelify+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="dash-header">
+      <div>
+        <h1>Orbclick</h1>
+        <p class="dash-subtitle">Progreso de desarrollo</p>
+      </div>
+      <div class="dash-freshness">
+        <span id="freshness" class="dash-chip">cargando…</span>
+        <span id="error" class="dash-chip dash-chip--danger" hidden></span>
+      </div>
+    </header>
+
+    <main class="dash-main">
+      <section class="panel" aria-labelledby="summary-title">
+        <h2 id="summary-title">Resumen</h2>
+        <div class="summary">
+          <div class="ring-wrap">
+            <svg class="ring" viewBox="0 0 120 120" role="img" aria-labelledby="ring-label">
+              <title id="ring-label">Porcentaje global de tareas completadas</title>
+              <circle class="ring-track" cx="60" cy="60" r="52" />
+              <circle id="ring-value" class="ring-fill" cx="60" cy="60" r="52" />
+            </svg>
+            <strong id="global-percent" class="ring-text">0 %</strong>
+          </div>
+          <dl class="summary-facts">
+            <div>
+              <dt>Fase actual</dt>
+              <dd id="current-phase">—</dd>
+            </div>
+            <div>
+              <dt>Tarea en curso</dt>
+              <dd id="current-task">—</dd>
+            </div>
+            <div>
+              <dt>Tareas completadas</dt>
+              <dd id="task-count">—</dd>
+            </div>
+            <div>
+              <dt>Líneas en src/</dt>
+              <dd id="loc-total">—</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="quality-title">
+        <h2 id="quality-title">Calidad</h2>
+        <div id="quality" class="quality-grid"></div>
+        <div id="loc-bars" class="loc-bars"></div>
+        <p id="git" class="dash-note">—</p>
+      </section>
+
+      <section class="panel panel--wide" aria-labelledby="blockers-title">
+        <h2 id="blockers-title">Bloqueos</h2>
+        <div id="blockers"></div>
+      </section>
+
+      <section class="panel panel--wide" aria-labelledby="phases-title">
+        <h2 id="phases-title">Fases</h2>
+        <div id="phases" class="phases"></div>
+      </section>
+
+      <section class="panel panel--wide" aria-labelledby="activity-title">
+        <h2 id="activity-title">Actividad</h2>
+        <ol id="activity" class="activity"></ol>
+      </section>
+    </main>
+
+    <script type="module" src="./dashboard.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,1376 @@
+/*
+ * Maqueta «Pastel moderno»: HUD separado arriba y tres paneles sobre un
+ * lienzo teñido. Los paneles son tarjetas blancas con línea de 1 px y sombra
+ * difusa; el pixel art se queda dentro de sus marcos redondeados.
+ */
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--space-4);
+  height: 100vh;
+  height: 100dvh;
+  padding: var(--space-4);
+  background: var(--color-bg);
+}
+
+/* ---------------- HUD ---------------- */
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius-l);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-1);
+}
+
+.topbar-brand {
+  display: flex;
+  flex: 0 0 auto;
+  gap: var(--space-2);
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.topbar-mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--color-accent-soft);
+}
+
+.topbar-stats {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  align-items: center;
+  min-width: 0;
+}
+
+/* Recurso: icono pixelado, cifra grande y etiqueta pequeña. */
+.stat {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.stat-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--color-surface-3);
+}
+
+.stat-icon canvas {
+  width: 18px;
+  height: 18px;
+}
+
+.stat--coins .stat-icon {
+  background: var(--color-coins-soft);
+}
+
+.stat--orbs .stat-icon {
+  background: var(--color-accent-soft);
+}
+
+.stat--berries .stat-icon {
+  background: #fbeaef;
+}
+
+.stat--cps .stat-icon {
+  background: #e3f5ec;
+}
+
+.stat-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.topbar-separator {
+  width: 1px;
+  align-self: stretch;
+  background: var(--color-border);
+}
+
+/* Nivel con su barra de XP. */
+.stat--level {
+  display: flex;
+  flex: 1 1 210px;
+  flex-direction: column;
+  /*
+   * `.stat` centra sus hijos, y en columna eso encoge la barra hasta dejarla
+   * en nada: la pista está vacía, así que su ancho es el de su contenido.
+   * Estirada ocupa el bloque entero, que es lo que pide el diseño.
+   */
+  align-items: stretch;
+  gap: 7px;
+  min-width: 180px;
+  /* Sin tope se comería el hueco libre de la barra superior entera. */
+  max-width: 320px;
+}
+
+.level-row {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  justify-content: space-between;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.level-row strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.level-row span {
+  font-variant-numeric: tabular-nums;
+}
+
+.track {
+  height: 7px;
+  border-radius: 999px;
+  background: var(--color-surface-3);
+  overflow: hidden;
+}
+
+.track > i {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-danger));
+  transition: width 400ms ease;
+}
+
+.topbar-aside {
+  display: flex;
+  flex: 0 1 auto;
+  gap: var(--space-3);
+  align-items: center;
+  margin-left: auto;
+  min-width: 0;
+}
+
+.topbar-hint {
+  display: -webkit-box;
+  overflow: hidden;
+  max-width: 240px;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  line-height: 1.3;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.save-state {
+  color: var(--color-text-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* ---------------- Paneles ---------------- */
+
+.columns {
+  display: grid;
+  grid-template-columns: var(--layout-zone) var(--layout-ranch) var(--layout-shop);
+  gap: var(--space-4);
+  min-height: 0;
+  padding: var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--color-canvas);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  min-height: 0;
+  padding: var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius-l);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-2);
+}
+
+.column-title {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.column-title h2 {
+  font-size: 17px;
+}
+
+.column-count,
+.column-hint {
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.column-hint {
+  margin: 0;
+  text-align: center;
+}
+
+.column-count {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--color-surface-3);
+  color: var(--color-text-soft);
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.column-placeholder {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  padding: var(--space-5);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius);
+  color: var(--color-text-muted);
+  text-align: center;
+  font-size: 13px;
+}
+
+/* ---------------- Escenario ---------------- */
+
+/*
+ * El escenario se ata a una proporción fija: si la columna se llena (la
+ * aparición, el combate…) el canvas conserva su escala entera en vez de
+ * desplomarse a ×1 con los sprites diminutos.
+ */
+/*
+ * El lienzo ocupa el ancho entero de su tarjeta, zona y Rancho por igual: es
+ * donde pasa el juego, así que cuanto más grande, mejor se ve. La proporción
+ * de referencia manda sobre la altura.
+ */
+.stage {
+  position: relative;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-surface-3);
+}
+
+.stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  box-shadow: inset 0 0 0 1px rgb(43 36 54 / 7%);
+  pointer-events: none;
+}
+
+.stage-canvas {
+  cursor: pointer;
+}
+
+.stage-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* El pixel art manda en los textos que van sobre el canvas. */
+.floating-text {
+  position: absolute;
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  color: #fff8e2;
+  text-shadow: 0 2px 6px rgb(20 14 30 / 55%);
+  transform: translate(-50%, -50%);
+  animation: float-up var(--float-ms, 900ms) cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.floating-text--xp {
+  font-size: 15px;
+  color: #e8e0ff;
+}
+
+.floating-text--level {
+  font-size: 22px;
+  color: #d6ffe9;
+}
+
+.floating-text--damage {
+  font-size: 17px;
+  color: #ffd9e1;
+}
+
+.floating-text--auto {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+@keyframes float-up {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 46px));
+  }
+}
+
+/* Cartel de la zona: lo importante se lee dentro del juego. */
+.zone-banner {
+  position: absolute;
+  top: var(--space-3);
+  left: 50%;
+  overflow: hidden;
+  max-width: calc(100% - var(--space-5));
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  background: rgb(26 20 36 / 82%);
+  color: #fff8e2;
+  font-family: var(--font-pixel);
+  font-size: clamp(14px, 2.1vw, 21px);
+  line-height: 1.15;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  animation: banner-life var(--banner-ms, 3000ms) ease-out forwards;
+}
+
+.zone-banner--good {
+  color: #bdf4da;
+}
+
+.zone-banner--bad {
+  color: #ffc9d5;
+}
+
+.zone-banner--coins {
+  color: #ffe6b0;
+}
+
+@keyframes banner-life {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -10px) scale(0.94);
+  }
+
+  8% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -6px) scale(0.98);
+  }
+}
+
+/* ---------------- Botones ---------------- */
+
+.button {
+  padding: 9px 14px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: var(--color-panel);
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--shadow-1);
+  transition:
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.button:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-2);
+}
+
+.button:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.button--small {
+  padding: 6px 11px;
+  font-size: 12px;
+}
+
+.button--accent {
+  border-color: transparent;
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.button--accent:hover:not(:disabled) {
+  border-color: transparent;
+  filter: brightness(1.07);
+}
+
+/* Sin esto el texto apagado del botón deshabilitado cae sobre el acento. */
+.button--accent:disabled {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-3);
+  color: var(--color-text-muted);
+}
+
+.save-menu {
+  display: flex;
+  gap: var(--space-1);
+  align-items: center;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.theme-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* ---------------- Aparición de salvajes ---------------- */
+
+.encounter {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--color-panel-raised);
+}
+
+.encounter--critical {
+  border-color: var(--color-danger);
+}
+
+.encounter-headline {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.encounter--empty .encounter-headline {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.encounter-name {
+  font-size: 17px;
+}
+
+.encounter-name:empty {
+  display: none;
+}
+
+.encounter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.encounter-tags:empty {
+  display: none;
+}
+
+.encounter-hp,
+.encounter-flees {
+  color: var(--color-text-muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.encounter-hint {
+  min-height: 15px;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+/* Los orbes se eligen por su dibujo. */
+.encounter-orbs {
+  display: flex;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-l);
+  background: var(--color-surface-3);
+}
+
+.orb-button {
+  display: grid;
+  flex: 1 1 0;
+  gap: 2px;
+  justify-items: center;
+  padding: var(--space-2) var(--space-1);
+  border-radius: var(--radius);
+  background: transparent;
+  text-align: center;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.orb-button:hover:not(:disabled) {
+  background: var(--color-panel);
+  box-shadow: var(--shadow-1);
+}
+
+.orb-button:hover:not(:disabled) .portrait {
+  transform: translateY(-2px);
+}
+
+.orb-button:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.orb-button:disabled .portrait {
+  opacity: 0.4;
+  filter: grayscale(1);
+}
+
+.orb-button .portrait {
+  transition: transform 120ms ease;
+}
+
+.orb-name {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.orb-detail {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Etiquetas de tipo y rareza. */
+.chip {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--color-surface-3);
+  color: var(--color-text-soft);
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chip--plant {
+  background: var(--type-plant);
+  color: #2b2436;
+}
+
+.chip--fire {
+  background: var(--type-fire);
+  color: #2b2436;
+}
+
+.chip--water {
+  background: var(--type-water);
+  color: #2b2436;
+}
+
+.chip--rock {
+  background: var(--type-rock);
+  color: #2b2436;
+}
+
+.chip--electric {
+  background: var(--type-electric);
+  color: #2b2436;
+}
+
+.chip--air {
+  background: var(--type-air);
+  color: #2b2436;
+}
+
+.chip--shiny {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+/* ---------------- Rancho ---------------- */
+
+/*
+ * El canvas del Rancho se ata a su composición de referencia (256×160): así
+ * el escalado entero cae en ×2 y las criaturas se ven, en vez de quedarse en
+ * ×1 con un lienzo enorme y los sprites diminutos.
+ */
+/* El Rancho es más apaisado que la zona: 256×160 de referencia. */
+.stage--ranch {
+  aspect-ratio: 256 / 160;
+}
+
+.ranch-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.post-list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* Cada puesto es una parcela: nombre, lo que rinde y quién trabaja. */
+.post-row {
+  display: grid;
+  gap: 5px;
+  padding: var(--space-3);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--color-panel-raised);
+}
+
+.post-row--locked {
+  border-style: dashed;
+  border-color: var(--color-border-strong);
+  background: transparent;
+  opacity: 0.7;
+}
+
+.post-head {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.post-name {
+  font-size: 14px;
+}
+
+.post-count {
+  color: var(--color-text-muted);
+  font-size: 11.5px;
+}
+
+.post-value {
+  color: var(--color-success);
+  font-size: 12.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-row--locked .post-value {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.post-crew {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.post-worker {
+  display: grid;
+  place-items: center;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--color-surface-3);
+  transition: box-shadow 160ms ease;
+}
+
+.post-worker:hover {
+  box-shadow: var(--shadow-1);
+}
+
+.synergies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  align-items: center;
+  padding: var(--space-3);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--color-panel-raised);
+}
+
+.synergies .resource-label {
+  width: 100%;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.synergy {
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  color: var(--color-text-soft);
+  font-size: 12px;
+}
+
+/* Criaturas */
+.creature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.creature-card {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  padding: var(--space-2);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--color-panel-raised);
+  transition:
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.creature-card:hover {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+
+.creature-card--reserve {
+  border-style: dashed;
+  background: transparent;
+  opacity: 0.75;
+}
+
+.creature-name {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.creature-sub {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.creature-shiny {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  color: var(--color-accent);
+  font-size: 11px;
+}
+
+.creature-warning {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  color: var(--color-danger);
+  font-size: 11px;
+}
+
+.portrait {
+  image-rendering: pixelated;
+}
+
+/* ---------------- Tienda ---------------- */
+
+.tabs {
+  display: flex;
+  gap: var(--space-4);
+  border-bottom: var(--border);
+}
+
+.tab {
+  position: relative;
+  padding: 0 0 10px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: transparent;
+}
+
+.tab--active {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.tab--active::after {
+  background: var(--color-accent);
+}
+
+.shop-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.shop-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Artículo: icono, texto y la pastilla de compra a la derecha. */
+.shop-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-3) var(--space-1);
+}
+
+.shop-item + .shop-item {
+  border-top: var(--border);
+}
+
+.shop-item-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--color-surface-3);
+}
+
+.shop-item-body {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.shop-item-head {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.shop-item-name {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.shop-item-owned {
+  color: var(--color-text-muted);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.shop-item-desc {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.shop-item-effect {
+  margin: 0;
+  color: var(--color-success);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Consumible anunciado pero todavía no comprable: se apaga sin desaparecer. */
+.shop-item--soon .shop-item-name,
+.shop-item--soon .shop-item-effect {
+  color: var(--color-text-muted);
+}
+
+.shop-item--soon .shop-item-icon canvas {
+  opacity: 0.75;
+}
+
+/* Mejora agotada: se queda en la lista, sin botón y en gris. */
+.shop-item--maxed .shop-item-name,
+.shop-item--maxed .shop-item-effect {
+  color: var(--color-text-muted);
+}
+
+.shop-item-max {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.shop-buy-row {
+  display: flex;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.shop-buy {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-self: start;
+  margin-top: var(--space-1);
+  padding: 9px 13px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition:
+    filter 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.shop-buy-row .shop-buy {
+  margin-top: 0;
+}
+
+.shop-buy:hover:not(:disabled) {
+  filter: brightness(1.07);
+  box-shadow: 0 6px 16px -8px var(--color-accent);
+}
+
+.shop-buy:disabled {
+  background: var(--color-surface-3);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.shop-item-price {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------- Diálogos ---------------- */
+
+.dialog {
+  width: min(520px, 92vw);
+  padding: var(--space-5);
+  border: var(--border);
+  border-radius: var(--radius-l);
+  background: var(--color-panel);
+  color: var(--color-text);
+  box-shadow: var(--shadow-3);
+}
+
+.dialog::backdrop {
+  background: rgb(43 36 54 / 38%);
+  backdrop-filter: blur(2px);
+}
+
+.dialog-title {
+  font-size: 19px;
+}
+
+.dialog-hint {
+  margin: var(--space-2) 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.dialog-field {
+  width: 100%;
+  padding: var(--space-3);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--color-panel-raised);
+  color: var(--color-text);
+  font-family: ui-monospace, 'Cascadia Mono', consolas, monospace;
+  font-size: 11px;
+  resize: vertical;
+  user-select: text;
+}
+
+.dialog-status {
+  min-height: 18px;
+  margin: var(--space-2) 0;
+  color: var(--color-success);
+  font-size: 13px;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+
+.sheet-head {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.sheet-facts {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-4) 0;
+}
+
+.sheet-facts > div {
+  display: grid;
+  grid-template-columns: 116px 1fr;
+  gap: var(--space-2);
+  font-size: 13px;
+}
+
+.sheet-facts dt {
+  color: var(--color-text-muted);
+}
+
+.sheet-facts dd {
+  margin: 0;
+}
+
+.sheet-assign {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.sheet-assign .resource-label {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.sheet-posts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+/* ---------------- Móvil ---------------- */
+
+@media (max-width: 1023px) {
+  .app {
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .app {
+    padding: var(--space-2);
+  }
+
+  .columns {
+    padding: var(--space-2);
+  }
+
+  .topbar-separator {
+    display: none;
+  }
+}
+
+/*
+ * Cuerpo desplazable de una columna: lo que no cabe se desplaza en vez de
+ * salirse de la tarjeta. El Rancho y la tienda ya tienen el suyo.
+ */
+.column-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* ---------------- Zonas ---------------- */
+
+.zone-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.zone-tab {
+  padding: 5px 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: var(--color-surface-3);
+  color: var(--color-text-soft);
+  font-size: 12px;
+  font-weight: 500;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.zone-tab:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.zone-tab--active {
+  border-color: transparent;
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+/* Una zona cerrada se queda a la vista, pero con el trazo discontinuo. */
+.zone-tab--locked {
+  border-style: dashed;
+  background: transparent;
+  color: var(--color-text-muted);
+}
+
+.zone-tab:disabled {
+  cursor: not-allowed;
+}
+
+.zone-tab--active:disabled {
+  color: #ffffff;
+}
+
+/* ---------------- Jefes ---------------- */
+
+.boss-card {
+  display: grid;
+  gap: 8px;
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--color-panel);
+}
+
+.boss-title {
+  color: var(--color-text-muted);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.boss-head {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.boss-portrait {
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+}
+
+.boss-titles {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+  min-width: 0;
+}
+
+.boss-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+
+.boss-mechanic {
+  color: var(--color-accent);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.boss-challenge {
+  justify-self: start;
+}
+
+/* Jefe ya vencido: verde de éxito, en pastilla discreta. */
+.chip--done {
+  background: var(--color-success);
+  color: #2b2436;
+}
+
+/* ---------------- Combate ---------------- */
+
+.battle {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--color-panel-raised);
+}
+
+.battle--fighting {
+  border-color: var(--color-accent);
+}
+
+.battle-challenge {
+  justify-self: start;
+  max-width: 100%;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.battle-enemy {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border);
+}
+
+.battle-enemy-side {
+  display: grid;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+}
+
+.battle-enemy-name {
+  font-size: 15px;
+}
+
+.battle-enemy-note {
+  color: var(--color-text-muted);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+/* El escudo de piedra pide una acción del jugador: se avisa en alerta. */
+.battle-enemy-note--alert {
+  color: var(--color-danger);
+}
+
+.battle-hp {
+  color: var(--color-text-muted);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.battle-team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-2);
+}
+
+.battler {
+  display: grid;
+  gap: 4px;
+  padding: var(--space-2);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--color-panel);
+}
+
+.battler--fainted {
+  opacity: 0.55;
+}
+
+.battler-head {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.battler-name {
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+
+/* La barra de carga se distingue de la de vida por el color. */
+.track--charge {
+  height: 5px;
+}
+
+.track--charge > i {
+  background: linear-gradient(90deg, var(--color-coins), var(--color-accent));
+}
+
+.battler-actions {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.battler-ability {
+  flex: 1;
+}
+
+.battle-message {
+  min-height: 16px;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.battle-message--good {
+  color: var(--color-success);
+}
+
+.battle-message--bad {
+  color: var(--color-danger);
+}

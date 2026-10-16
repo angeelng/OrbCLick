@@ -1,0 +1,7 @@
+node_modules
+dist
+coverage
+progress/metrics.json
+.vitest-report.json
+*.local
+.DS_Store

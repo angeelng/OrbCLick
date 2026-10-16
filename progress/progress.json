@@ -1,0 +1,1197 @@
+{
+  "updatedAt": "2026-10-12T20:10:23Z",
+  "currentPhase": 6,
+  "currentTask": null,
+  "phases": [
+    {
+      "id": 1,
+      "name": "Esqueleto",
+      "status": "done",
+      "startedAt": "2026-10-11T22:33:03.026Z",
+      "finishedAt": "2026-10-11T22:53:42.567Z",
+      "tasks": [
+        {
+          "id": "1.1",
+          "title": "Dashboard: progress.json con las 7 fases desglosadas en tareas",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "Las 7 fases del GDD desglosadas en 54 tareas.",
+          "files": [
+            "progress/progress.json"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Dashboard: scripts/progress-metrics.ts y npm run progress:metrics",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "Ejecuta tests con cobertura, build, lint, git y líneas por carpeta; nunca lanza, los fallos quedan como `error`.",
+          "files": [
+            "scripts/progress-metrics.ts"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Dashboard: página en tiempo real en /dashboard/ y npm run dashboard",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "Página en /dashboard/ con sondeo cada 3 s, anillo de progreso, calidad, bloqueos, fases desplegables y actividad. Fuera del build de producción.",
+          "files": [
+            "dashboard/index.html",
+            "dashboard/dashboard.ts",
+            "dashboard/dashboard.css",
+            "vite.config.ts"
+          ]
+        },
+        {
+          "id": "1.4",
+          "title": "Proyecto Vite + TypeScript strict, ESLint y Prettier",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "TS strict con noUncheckedIndexedAccess y exactOptionalPropertyTypes; ESLint prohíbe DOM, Date.now y Math.random dentro de core/ y data/.",
+          "files": [
+            "package.json",
+            "tsconfig.json",
+            "eslint.config.js",
+            ".prettierrc.json"
+          ]
+        },
+        {
+          "id": "1.5",
+          "title": "Tokens CSS de la paleta y layout de tres columnas",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "Paleta del GDD como variables CSS y layout 30/40/30 con barra superior; en <1024 px las columnas se apilan (las pestañas llegan en la fase 7).",
+          "files": [
+            "src/styles/tokens.css",
+            "src/styles/base.css",
+            "src/styles/layout.css",
+            "index.html"
+          ]
+        },
+        {
+          "id": "1.6",
+          "title": "core/: GameState, economy, progression y PRNG con semilla",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "GameState con IDs y progreso, economía envuelta en helpers (add/mul/format), curva XP(n)=100·1,5^(n-1) y PRNG mulberry32 con semilla persistida.",
+          "files": [
+            "src/core/state.ts",
+            "src/core/economy.ts",
+            "src/core/progression.ts",
+            "src/core/rng.ts",
+            "src/core/engine.ts",
+            "src/data/balance.ts"
+          ]
+        },
+        {
+          "id": "1.7",
+          "title": "systems/: bus de eventos tipado y bucle con tick fijo de 100 ms",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "Bus tipado por GameEventMap y bucle rAF con acumulador de 100 ms, acotado a 1 s por fotograma al volver de una pestaña inactiva.",
+          "files": [
+            "src/systems/events.ts",
+            "src/systems/loop.ts",
+            "src/systems/game.ts"
+          ]
+        },
+        {
+          "id": "1.8",
+          "title": "persistence/: SaveRepository, LocalSaveRepository y migraciones",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "SaveRepository con SaveFile versionado, cadena de migraciones vacía pero montada y parseo tolerante a partidas corruptas. Incluye el autoguardado de la regla 5 (30 s + visibilitychange/pagehide), que adelanta la tarea 2.6.",
+          "files": [
+            "src/persistence/types.ts",
+            "src/persistence/migrations.ts",
+            "src/persistence/parse.ts",
+            "src/persistence/localSaveRepository.ts"
+          ]
+        },
+        {
+          "id": "1.9",
+          "title": "render/: canvas de zona 160×160 con escalado entero y placeholders",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "Canvas de 160×160 con escalado entero por ResizeObserver y sprites pedidos por spriteId; el árbol de bayas es un placeholder generado por código con 2 frames.",
+          "files": [
+            "src/render/pixel.ts",
+            "src/render/placeholders.ts",
+            "src/render/zoneScene.ts",
+            "src/render/particles.ts"
+          ]
+        },
+        {
+          "id": "1.10",
+          "title": "Objeto clicable de la Pradera: monedas, XP, número flotante y partículas",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "Clic (ratón y teclado) sobre el árbol: monedas, XP, número flotante, 4–6 partículas y aplastado 0,95→1 en 80 ms. Verificado en Chrome: 100 clics = 100 monedas y subida a nivel 2.",
+          "files": [
+            "src/ui/zonePanel.ts",
+            "src/ui/topbar.ts",
+            "src/ui/dom.ts",
+            "src/main.ts"
+          ]
+        },
+        {
+          "id": "1.11",
+          "title": "Tests de core y persistence; build, lint y test en verde",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "60 tests en Vitest sobre core/ y persistence/ (más bucle y bus); build, lint y test en verde.",
+          "files": [
+            "tests/rng.test.ts",
+            "tests/economy.test.ts",
+            "tests/progression.test.ts",
+            "tests/engine.test.ts",
+            "tests/persistence.test.ts",
+            "tests/loop.test.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Economía",
+      "status": "done",
+      "startedAt": "2026-10-11T23:02:13.536Z",
+      "finishedAt": "2026-10-11T23:10:42.185Z",
+      "tasks": [
+        {
+          "id": "2.1",
+          "title": "data/items.ts: mejoras de clic (Guantes I–V, Cebo dorado) y precios base",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:10:42.185Z",
+          "notes": "Guantes I–V como artículos repetibles de bonus plano (+1, +5, +25, +120, +600) con desbloqueo por nivel (1, 7, 10, 12, 15), según la decisión del autor. El Cebo dorado se pospone a la fase 3.",
+          "files": [
+            "src/data/items.ts"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Precio de mejoras repetibles: base × 1,15^cantidad en core/economy.ts",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:10:42.185Z",
+          "notes": "upgradePrice = base · 1,15^cantidad y upgradeBundlePrice para lotes; el factor vive en balance.ts.",
+          "files": [
+            "src/core/economy.ts",
+            "src/data/balance.ts"
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Formateador de números en español (1,2 K · 3,4 M)",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:10:42.185Z",
+          "notes": "Formateador es-ES con coma decimal y sufijos K/M/B; trunca en vez de redondear para no prometer monedas que no hay.",
+          "files": [
+            "src/core/economy.ts"
+          ]
+        },
+        {
+          "id": "2.4",
+          "title": "Niveles de entrenador 1–15 y tabla de desbloqueos",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:10:42.185Z",
+          "notes": "Tabla de desbloqueos 1–15 del GDD como datos, con la fase en que cada cosa entra; la barra superior anuncia el siguiente nivel.",
+          "files": [
+            "src/data/unlocks.ts",
+            "src/core/progression.ts",
+            "src/ui/topbar.ts"
+          ]
+        },
+        {
+          "id": "2.5",
+          "title": "Panel de tienda DOM con pestañas y repintado selectivo",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:10:42.185Z",
+          "notes": "Tienda con las cuatro pestañas del GDD; solo Mejoras tiene contenido. Las filas se crean una vez y en cada cambio solo se reescriben precio, cantidad y botón.",
+          "files": [
+            "src/ui/shopPanel.ts",
+            "src/styles/layout.css"
+          ]
+        },
+        {
+          "id": "2.6",
+          "title": "Autoguardado cada 30 s y en visibilitychange",
+          "status": "done",
+          "finishedAt": "2026-10-11T22:53:42.567Z",
+          "notes": "Adelantada en la tarea 1.8: sin autoguardado, LocalSaveRepository quedaba sin llamador.",
+          "files": [
+            "src/systems/game.ts",
+            "src/main.ts"
+          ]
+        },
+        {
+          "id": "2.7",
+          "title": "Exportar e importar partida en Base64",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:10:42.185Z",
+          "notes": "Código ORBCLICK<versión>:<base64> tolerante a espacios y saltos de línea; importar pasa por las mismas migraciones y validaciones que una partida guardada. Diálogo nativo en la barra superior.",
+          "files": [
+            "src/persistence/codec.ts",
+            "src/ui/saveMenu.ts"
+          ]
+        },
+        {
+          "id": "2.8",
+          "title": "Migración de guardado para el estado de mejoras compradas",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:10:42.185Z",
+          "notes": "SAVE_VERSION 2 con migración v1 → v2 que añade `upgrades: {}`. Verificado en Chrome: una partida de la fase 1 carga entera (777 monedas, nivel 3, 300 clics).",
+          "files": [
+            "src/persistence/migrations.ts",
+            "src/persistence/parse.ts",
+            "src/persistence/types.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Captura",
+      "status": "done",
+      "startedAt": "2026-10-11T23:17:05.130Z",
+      "finishedAt": "2026-10-11T23:34:36.646Z",
+      "tasks": [
+        {
+          "id": "3.1",
+          "title": "data/species.ts: las 12 criaturas capturables y los 3 jefes",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:34:36.646Z",
+          "notes": "Las 15 especies del GDD con tipo, rareza, zona, aptitudes y textos de pasiva y activa. Las estadísticas de combate (PV/ATQ/DEF/VEL) se dejan para la fase 5: el GDD las pide pero no da valores.",
+          "files": [
+            "src/data/species.ts",
+            "src/data/traits.ts",
+            "src/data/zones.ts"
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Apariciones cada 45–90 s por peso de rareza",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:34:36.646Z",
+          "notes": "Aparición cada 45–90 s elegida por peso de rareza (60/28/10/2), 20 s en pantalla y huida si no la atiendes. Los jefes tienen peso 0: no salen como salvajes.",
+          "files": [
+            "src/core/capture.ts",
+            "src/core/engine.ts"
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Debilitar salvajes a clics (PV por zona y escalón de rareza)",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:34:36.646Z",
+          "notes": "PV por la fórmula del GDD: 15 en la Pradera, ×1,8 por zona y ×2 por escalón de rareza. Cada clic quita el daño de clic y nunca baja de 0.",
+          "files": [
+            "src/core/capture.ts",
+            "src/core/economy.ts"
+          ]
+        },
+        {
+          "id": "3.4",
+          "title": "Orbes (básico, red, lunar) y probabilidad de captura",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:34:36.646Z",
+          "notes": "Los tres orbes con su multiplicador (el de red ×2 contra Agua) y p = min(0,95; b · m · (1 + 1,5 · (1 − PV/PV_max))). El orbe se gasta siempre y al fallar hay 50 % de huida.",
+          "files": [
+            "src/data/orbs.ts",
+            "src/core/capture.ts"
+          ]
+        },
+        {
+          "id": "3.5",
+          "title": "Reserva y plazas del Rancho al capturar",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:34:36.646Z",
+          "notes": "Cuatro plazas de Rancho; a partir de ahí los ejemplares entran en la Reserva, que no tiene tope. Verificado en Chrome: la quinta captura avisa y va a la Reserva.",
+          "files": [
+            "src/core/capture.ts",
+            "src/ui/creaturesPanel.ts"
+          ]
+        },
+        {
+          "id": "3.6",
+          "title": "Generador de placeholders de criaturas por spriteId",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:34:36.646Z",
+          "notes": "Seis formas pixeladas (gota, diamante, chispa, canto, pluma, mancha) teñidas por tipo, con borde y ojos de 2 px; 32×32 y 48×48 los jefes, más una paleta alternativa para las variocolor. Todo por spriteId.",
+          "files": [
+            "src/render/creatureSprites.ts",
+            "src/render/placeholders.ts"
+          ]
+        },
+        {
+          "id": "3.7",
+          "title": "Panel de aparición y ficha de ejemplar",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:34:36.646Z",
+          "notes": "Panel de aparición con rareza, PV, reloj de huida y un botón por orbe con su probabilidad; la salvaje se dibuja en el canvas con sus barras. Ficha de ejemplar en diálogo con rasgo, aptitudes, pasiva, activa y saciedad.",
+          "files": [
+            "src/ui/encounterPanel.ts",
+            "src/ui/creaturesPanel.ts",
+            "src/render/zoneScene.ts"
+          ]
+        },
+        {
+          "id": "3.8",
+          "title": "Rasgos aleatorios y variocolor 1/500",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:34:36.646Z",
+          "notes": "Rasgo aleatorio de los seis del GDD y variocolor 1/500 con paleta propia y estrella en la ficha.",
+          "files": [
+            "src/data/traits.ts",
+            "src/core/capture.ts"
+          ]
+        },
+        {
+          "id": "3.9",
+          "title": "Derrotar salvajes a clics por monedas extra",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:47:02.554Z",
+          "notes": "Pedido por el autor fuera del GDD: al llegar a 0 PV la salvaje cae sola, se pierde y paga PV_max · M_clic · bonus_rareza (1,5/2/3/4). El orbe hay que lanzarlo antes del último golpe, así que la captura real no alcanza el 95 % teórico; el panel avisa con el borde en rojo cuando queda un golpe. SAVE_VERSION 4 con migración v3 → v4 para el contador de derrotas.",
+          "files": [
+            "src/core/capture.ts",
+            "src/core/engine.ts",
+            "src/data/balance.ts",
+            "src/persistence/migrations.ts",
+            "src/ui/encounterPanel.ts",
+            "src/ui/zonePanel.ts"
+          ]
+        },
+        {
+          "id": "3.10",
+          "title": "Animación de captura y apoyo correcto de los sprites en el suelo",
+          "status": "done",
+          "finishedAt": "2026-10-11T23:59:10.816Z",
+          "notes": "Pedido por el autor. Los sprites se colocan por su base pintada (medida una vez por sprite) en vez de por el borde del recuadro: el árbol dejaba 4 px de hueco y parecía flotar. La animación del orbe va en cuatro tramos (vuelo en arco 300 ms, absorción 200 ms, tambaleo 900 ms y resultado 360 ms) con destello al capturar o la criatura saliendo de vuelta al fallar; mientras corre, la salvaje no acepta más golpes.",
+          "files": [
+            "src/render/placeholders.ts",
+            "src/render/orbSprites.ts",
+            "src/render/zoneScene.ts",
+            "src/ui/zonePanel.ts",
+            "src/data/balance.ts"
+          ]
+        },
+        {
+          "id": "3.11",
+          "title": "XP de entrenador por debilitar y por derrotar salvajes",
+          "status": "done",
+          "finishedAt": "2026-10-12T00:08:21.474Z",
+          "notes": "Pedido por el autor. Debilitar paga la parte proporcional del daño hecho (30 % de la XP de captura por la barra entera) y rematar añade otro 30 %; capturar sigue pagando el 100 % de la tabla del GDD, así que el orbe sigue siendo la mejor opción. La XP de captura, que ya existía desde la fase 3, ahora también se ve como número flotante.",
+          "files": [
+            "src/core/capture.ts",
+            "src/core/engine.ts",
+            "src/data/balance.ts",
+            "src/systems/events.ts",
+            "src/systems/game.ts",
+            "src/ui/zonePanel.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Rancho",
+      "status": "done",
+      "startedAt": "2026-10-12T00:11:48.871Z",
+      "finishedAt": "2026-10-12T00:30:25.179Z",
+      "tasks": [
+        {
+          "id": "4.1",
+          "title": "data/: puestos del Rancho y aptitudes de trabajo",
+          "status": "done",
+          "finishedAt": "2026-10-12T00:30:25.179Z",
+          "notes": "Los seis puestos del GDD, uno por aptitud, con su nivel de desbloqueo (1, 2, 4, 6, 8, 9) y precio de mejora. El estado gana bayas, plazas compradas, mejoras de puesto y el orbe a medio fabricar.",
+          "files": [
+            "src/data/posts.ts",
+            "src/data/balance.ts",
+            "src/core/state.ts"
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "core/ranch.ts: asignación de ejemplares a puestos",
+          "status": "done",
+          "finishedAt": "2026-10-12T00:30:25.179Z",
+          "notes": "Asignar y quitar del puesto, mover entre Rancho y Reserva, y las plazas (4 iniciales, 500 · 2^k cada extra, tope de 16).",
+          "files": [
+            "src/core/ranch.ts",
+            "src/core/engine.ts"
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "CPS y multiplicadores de producción por puesto",
+          "status": "done",
+          "finishedAt": "2026-10-12T00:30:25.179Z",
+          "notes": "CPS = Σ 0,5 · A · (1 + 0,05(L−1)) · rasgo · saciedad · tipo de zona, con ×2 si es variocolor. La Mina entra en las monedas por clic, el Taller abarata orbes y la Exploración acorta la espera entre apariciones. Mejoras de puesto +25 % por nivel.",
+          "files": [
+            "src/core/ranch.ts",
+            "src/core/economy.ts",
+            "src/core/capture.ts"
+          ]
+        },
+        {
+          "id": "4.4",
+          "title": "Saciedad, comedero automático y consumo de bayas",
+          "status": "done",
+          "finishedAt": "2026-10-12T00:30:25.179Z",
+          "notes": "Saciedad: baja 1 punto por minuto trabajando, rinde al 100 % por encima de 50, al 60 % hasta 1 y se para a 0. El comedero reparte bayas solo. La Glotona gasta el doble. Bayas a la venta desde el nivel 2.",
+          "files": [
+            "src/core/ranch.ts",
+            "src/ui/shopPanel.ts"
+          ]
+        },
+        {
+          "id": "4.5",
+          "title": "Niveles de criatura y XP pasiva de la Guardería",
+          "status": "done",
+          "finishedAt": "2026-10-12T00:30:25.179Z",
+          "notes": "Niveles de criatura con la curva 50 · 1,4^(L−1) y XP pasiva de la Guardería repartida entre las criaturas del Rancho.",
+          "files": [
+            "src/core/ranch.ts"
+          ]
+        },
+        {
+          "id": "4.6",
+          "title": "Sinergias de tipo en el Rancho",
+          "status": "done",
+          "finishedAt": "2026-10-12T00:30:25.179Z",
+          "notes": "Agua + Planta (+15 % bayas), Fuego + Roca (+10 % minería) y Eléctrico + Aire (+10 % CPS); cada par cuenta una vez y solo con criaturas en el Rancho.",
+          "files": [
+            "src/core/ranch.ts",
+            "src/data/balance.ts"
+          ]
+        },
+        {
+          "id": "4.7",
+          "title": "Progreso offline al 50 % con tope de 8 h y resumen al entrar",
+          "status": "done",
+          "finishedAt": "2026-10-12T00:30:25.179Z",
+          "notes": "Progreso offline al 50 % con tope de 8 h y resumen al entrar. Un hueco largo entre ticks (pestaña en segundo plano) se paga con esas mismas reglas, para que minimizar no sea un atajo.",
+          "files": [
+            "src/core/ranch.ts",
+            "src/core/engine.ts",
+            "src/ui/offlineSummary.ts"
+          ]
+        },
+        {
+          "id": "4.8",
+          "title": "Canvas del Rancho 256×160 con criaturas animadas en su puesto",
+          "status": "done",
+          "finishedAt": "2026-10-12T00:30:25.179Z",
+          "notes": "Canvas del Rancho de 256×160 con una parcela por puesto, candado en los cerrados y las criaturas paseando sobre el suelo; la columna añade pestañas de Puestos y Criaturas con la ficha para asignar.",
+          "files": [
+            "src/render/ranchScene.ts",
+            "src/ui/ranchPanel.ts",
+            "src/styles/layout.css"
+          ]
+        },
+        {
+          "id": "4.9",
+          "title": "Pulido de interfaz: botones de orbe con su dibujo y barra superior rehecha",
+          "status": "done",
+          "finishedAt": "2026-10-12T08:01:13.976Z",
+          "notes": "Pedido por el autor. Los orbes se eligen por su dibujo (sprite 12×12 rediseñado como esfera, con el nombre encima y las existencias y la probabilidad debajo) y el icono aparece también en la tienda. La barra superior pasa a pastillas de una línea con la barra de XP en línea dentro de la del nivel: ya no se sale del marco y en ventanas estrechas envuelve en vez de desbordar. Nuevo ayudante ui/spriteCanvas.ts que quita el código de retratos duplicado en tres paneles.",
+          "files": [
+            "src/render/orbSprites.ts",
+            "src/ui/spriteCanvas.ts",
+            "src/ui/encounterPanel.ts",
+            "src/ui/shopPanel.ts",
+            "src/ui/ranchPanel.ts",
+            "src/ui/topbar.ts",
+            "src/styles/layout.css"
+          ]
+        },
+        {
+          "id": "4.10",
+          "title": "El árbol se sacude solo con los clics del Campo de recolección",
+          "status": "done",
+          "finishedAt": "2026-10-12T08:09:59.842Z",
+          "notes": "Pedido por el autor. El panel de zona reproduce el aplastado, las partículas y un número flotante apagado al ritmo real del CPS, con tope de 6 sacudidas y 3 números por segundo para que un Rancho grande no sature la pantalla. Es solo eco visual: las monedas ya las cobraba el tick.",
+          "files": [
+            "src/ui/zonePanel.ts",
+            "src/data/balance.ts",
+            "src/styles/layout.css"
+          ]
+        },
+        {
+          "id": "4.11",
+          "title": "Los avisos de la zona pasan a un cartel dentro del juego",
+          "status": "done",
+          "finishedAt": "2026-10-12T08:22:53.585Z",
+          "notes": "Pedido por el autor. Aparición, captura, escape, huida y derrota se anuncian en un cartel grande con Pixelify Sans sobre el canvas de la zona, con color según lo que pasa y desaparición a los 3 s. El panel de abajo se queda solo con los datos y la instrucción. El evento wild:fled ahora lleva la especie para poder nombrarla cuando huye sola.",
+          "files": [
+            "src/ui/zonePanel.ts",
+            "src/ui/encounterPanel.ts",
+            "src/core/engine.ts",
+            "src/systems/events.ts",
+            "src/systems/game.ts",
+            "src/styles/layout.css",
+            "src/i18n/es.ts"
+          ]
+        },
+        {
+          "id": "4.12",
+          "title": "Nueva dirección visual «Pastel moderno» del artefacto del autor",
+          "status": "done",
+          "finishedAt": "2026-10-12T08:56:28.926Z",
+          "notes": "Paleta pastel clara con variante oscura y conmutador; Outfit para títulos y cifras, Plus Jakarta Sans para la interfaz y Pixelify Sans solo dentro del arte. HUD de recursos con iconos pixelados, tres paneles como tarjetas blancas sobre lienzo teñido, pestañas subrayadas y pastillas de compra. El pixel art se repinta en pastel: cielo claro con nubes, criaturas con contorno en un tono oscuro de su propio color y parcelas claras en el Rancho. El selector de zona del artefacto se deja fuera a propósito: ese hueco lo siguen ocupando los orbes. El GDD y CLAUDE.md quedan actualizados con la paleta, las formas, las tipografías y el layout nuevos.",
+          "files": [
+            "src/styles/tokens.css",
+            "src/styles/base.css",
+            "src/styles/layout.css",
+            "index.html",
+            "src/ui/topbar.ts",
+            "src/ui/themeToggle.ts",
+            "src/ui/shopPanel.ts",
+            "src/render/iconSprites.ts",
+            "src/render/creatureSprites.ts",
+            "src/render/zoneScene.ts",
+            "src/render/ranchScene.ts",
+            "src/render/placeholders.ts",
+            "src/data/zones.ts",
+            "docs/GDD.md",
+            "CLAUDE.md"
+          ]
+        },
+        {
+          "id": "4.13",
+          "title": "Arreglo: los botones de Rancho y Consumibles de la tienda no compraban",
+          "status": "done",
+          "finishedAt": "2026-10-12T09:05:25.015Z",
+          "notes": "Las dos pestañas reconstruían su lista entera en cada state:changed, que el Rancho emite diez veces por segundo; el botón se reemplazaba entre pointerdown y pointerup y el clic nunca se disparaba. Ahora se montan una vez y solo se refrescan precio, existencias y disponibilidad, como ya hacían Mejoras y Captura. Queda anotado en el código por qué no se pueden reconstruir.",
+          "files": [
+            "src/ui/shopPanel.ts"
+          ]
+        },
+        {
+          "id": "4.14",
+          "title": "Criaturas dibujadas a mano en lugar de formas generadas",
+          "status": "done",
+          "finishedAt": "2026-10-12T12:44:33.244Z",
+          "notes": "Los placeholders geométricos dan paso a mapas de 16×16 dibujados píxel a píxel en render/creatureMaps.ts, con la paleta de seis tonos de la dirección visual. Nueve vienen del artefacto del autor (las ocho del bestiario y Cornavid) y seis los dibujé en el mismo estilo: Musgolito, Brasacol, Anguilux, Nenúfrel, Geodrón y Marealis. El campo de forma geométrica de species.ts desaparece, la sombra la trae el propio sprite y los retratos duplican su escala porque el sprite pasa de 32 a 16 píxeles. Verificado después en Chrome: el canvas del Rancho se quedaba en escala x1 (lienzo enorme, sprites diminutos) porque su caja era muy baja; ahora se ata a la composición 256x160 y sale a x2. Las barras de la salvaje se cuelgan de la primera fila pintada del sprite, no del borde del recuadro.",
+          "files": [
+            "src/render/creatureMaps.ts",
+            "src/render/creatureSprites.ts",
+            "src/data/species.ts",
+            "src/render/zoneScene.ts",
+            "src/render/ranchScene.ts",
+            "src/ui/ranchPanel.ts",
+            "tests/creatureMaps.test.ts",
+            "docs/GDD.md",
+            "CLAUDE.md",
+            "src/styles/layout.css"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Combate",
+      "status": "done",
+      "startedAt": "2026-10-12T12:58:36.987Z",
+      "finishedAt": "2026-10-12T13:25:00.000Z",
+      "tasks": [
+        {
+          "id": "5.1",
+          "title": "Tabla de tipos y fórmula de daño en core/combat.ts",
+          "status": "done",
+          "finishedAt": "2026-10-12T13:25:00.000Z",
+          "notes": "Tabla de tipos (TYPE_CHART en data/combat.ts, x1,5 a favor y x0,67 en contra), danio D = ATQ x ATQ/(ATQ+DEF) x tipo x varianza 0,9-1,1 con minimo 1, estadisticas por nivel (+8 % por nivel) y rasgos de salud/ataque.",
+          "files": [
+            "src/data/combat.ts",
+            "src/core/combat.ts",
+            "src/data/balance.ts",
+            "tests/combat.test.ts"
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Equipo de hasta 3 y exclusión con los puestos del Rancho",
+          "status": "done",
+          "finishedAt": "2026-10-12T13:25:00.000Z",
+          "notes": "Equipo de hasta 3 con plazas por nivel (3/6/8). Entrar en el equipo saca del puesto del Rancho; las agotadas no pueden entrar. Pestania Equipo en el panel del Rancho y boton en la ficha de criatura.",
+          "files": [
+            "src/core/combat.ts",
+            "src/core/state.ts",
+            "src/ui/ranchPanel.ts",
+            "src/i18n/es.ts"
+          ]
+        },
+        {
+          "id": "5.3",
+          "title": "Combate automático en tiempo real resuelto por ticks",
+          "status": "done",
+          "finishedAt": "2026-10-12T13:25:00.000Z",
+          "notes": "Combate en tiempo real resuelto en el tick de 100 ms: ataques automaticos de ambos lados por intervalo 2000/(1+VEL/100), limite de 90 s, victoria que paga PV_max x 1,5 x monedas por clic y el 80 % de la XP de captura, y derrota que agota 2 min a las caidas.",
+          "files": [
+            "src/core/combat.ts",
+            "src/core/engine.ts",
+            "src/systems/game.ts"
+          ]
+        },
+        {
+          "id": "5.4",
+          "title": "Daño de clic del jugador y carga de la barra de habilidad",
+          "status": "done",
+          "finishedAt": "2026-10-12T13:25:00.000Z",
+          "notes": "Clic del jugador sobre el enemigo: su danio de clic y +2 % de carga a todo el equipo en pie. El panel de zona reparte el clic entre arbol, salvaje y enemigo.",
+          "files": [
+            "src/core/combat.ts",
+            "src/ui/zonePanel.ts",
+            "src/systems/game.ts"
+          ]
+        },
+        {
+          "id": "5.5",
+          "title": "Habilidades activas: daño, curación, escudo y adormecer",
+          "status": "done",
+          "finishedAt": "2026-10-12T13:25:00.000Z",
+          "notes": "Cuatro clases de habilidad activa (danio, curacion, escudo y adormecer) con carga por tiempo propia de cada especie; al lanzarla la carga vuelve a 0. Verificado en navegador: boton activo al 100 %, enemigo danado y carga reiniciada.",
+          "files": [
+            "src/data/combat.ts",
+            "src/data/species.ts",
+            "src/core/combat.ts"
+          ]
+        },
+        {
+          "id": "5.6",
+          "title": "Bayas en combate y agotamiento de 2 min tras caer",
+          "status": "done",
+          "finishedAt": "2026-10-12T13:25:00.000Z",
+          "notes": "Bayas en combate: curan el 30 % de los PV maximos, maximo 3 por pelea. Verificado en navegador (42 -> 63 PV de 69). Las criaturas que caen quedan agotadas 2 min y salen del equipo.",
+          "files": [
+            "src/core/combat.ts",
+            "src/ui/battlePanel.ts",
+            "src/data/balance.ts"
+          ]
+        },
+        {
+          "id": "5.7",
+          "title": "Panel de combate: retratos, barras de PV y habilidades",
+          "status": "done",
+          "finishedAt": "2026-10-12T13:25:00.000Z",
+          "notes": "Panel de combate: retrato y barra del enemigo, una tarjeta por miembro con PV, carga, habilidad y baya, boton de retirarse y mensajes de victoria/derrota. Las cajas de los lienzos quedan fijadas por relacion de aspecto para que la escala entera no caiga a x1 cuando el panel crece.",
+          "files": [
+            "src/ui/battlePanel.ts",
+            "src/styles/layout.css",
+            "src/i18n/es.ts"
+          ]
+        },
+        {
+          "id": "5.8",
+          "title": "Las raras exigen combate antes del orbe (regla del GDD)",
+          "status": "done",
+          "notes": "Se retira el apanio de la fase 3: a partir del escalon de rareza 2 (balance.combat.battleRarityStep) el clic ya no quita PV a la salvaje. Con equipo disponible el clic abre el combate; sin equipo sale un cartel en la zona. Verificado en navegador con Chispin (rara): sin equipo 120/120 PV intactos y cartel, con equipo se abre la pelea.",
+          "files": [
+            "src/core/capture.ts",
+            "src/core/engine.ts",
+            "src/systems/game.ts",
+            "src/ui/zonePanel.ts",
+            "src/data/balance.ts",
+            "tests/engineCapture.test.ts"
+          ],
+          "finishedAt": "2026-10-12T13:25:00.000Z"
+        },
+        {
+          "id": "5.9",
+          "title": "Arreglo del botón «Retar con el equipo»",
+          "status": "done",
+          "notes": "El botón se activaba sin comprobar lo que exige startBattle: con todo el equipo agotado el clic no hacía nada y con la salvaje ya debilitada arrancaba un combate de victoria vacía. Ahora el panel replica las condiciones y explica el motivo en el cartel, startBattle rechaza la salvaje sin PV con el fallo «weakened», y el CSS da estilo propio al botón de acento deshabilitado (el texto apagado caía sobre el morado y no se leía).",
+          "files": [
+            "src/ui/battlePanel.ts",
+            "src/core/combat.ts",
+            "src/styles/layout.css",
+            "src/i18n/es.ts",
+            "tests/combat.test.ts"
+          ],
+          "finishedAt": "2026-10-12T18:25:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Zonas y jefes",
+      "status": "done",
+      "startedAt": "2026-10-12T18:31:25Z",
+      "finishedAt": "2026-10-12T18:55:13Z",
+      "tasks": [
+        {
+          "id": "6.1",
+          "title": "data/zones.ts completo con Cueva y Lago",
+          "status": "done",
+          "finishedAt": "2026-10-12T18:34:13Z",
+          "notes": "ZONE_IDS pasa a las tres zonas y ZoneDefinition gana paleta completa, tipo de fondo (open/cavern), nivel de desbloqueo, jefe requerido y nivel del jefe. ZONE_ROSTER_IDS/ZoneRosterId desaparecen: ahora hay un solo tipo ZoneId. Nuevo data/bosses.ts con la mecánica de cada jefe y sprites clicables de la Cueva (veta de cristal) y el Lago (manantial).",
+          "files": [
+            "src/data/zones.ts",
+            "src/data/bosses.ts",
+            "src/render/placeholders.ts",
+            "src/render/zoneScene.ts",
+            "tests/zones.test.ts"
+          ]
+        },
+        {
+          "id": "6.2",
+          "title": "Selector de zona y bonus del tipo favorecido (+25 %)",
+          "status": "done",
+          "finishedAt": "2026-10-12T18:40:36Z",
+          "notes": "Pestañas de zona en la columna izquierda (las tres siempre a la vista; las cerradas dicen si les falta nivel o jefe) y travelToZone en core: deja atrás a la salvaje de la zona anterior, reprograma la aparición y se niega en medio de un combate. GameState gana bosses (jefe vencido + enfriamiento) con migración v6→v7, y ZoneScene gana setZone para cambiar de zona sin tirar el canvas. El bonus del tipo favorecido ya salía de activeZoneId: ahora de verdad cambia al viajar.",
+          "files": [
+            "src/core/progression.ts",
+            "src/core/engine.ts",
+            "src/core/state.ts",
+            "src/ui/zonePanel.ts",
+            "src/render/zoneScene.ts",
+            "src/styles/layout.css",
+            "src/persistence/migrations.ts",
+            "src/persistence/parse.ts",
+            "tests/zoneTravel.test.ts"
+          ]
+        },
+        {
+          "id": "6.3",
+          "title": "Jefes de zona: PV ×10 y reto por botón",
+          "status": "done",
+          "finishedAt": "2026-10-12T18:51:31Z",
+          "notes": "startBossBattle en core: PV ×10 de una salvaje común de la zona, combate más largo (3 min), ataque más espaciado y botín al doble. Tarjeta del jefe en la columna de la zona con retrato, mecánica, enfriamiento en cuenta atrás y el motivo exacto por el que no se puede retar. El jefe sale en el lienzo prestándose el hueco de la salvaje, así que el clic le llega como a cualquier rival.",
+          "files": [
+            "src/core/combat.ts",
+            "src/core/engine.ts",
+            "src/core/progression.ts",
+            "src/data/balance.ts",
+            "src/ui/battlePanel.ts",
+            "src/ui/zonePanel.ts",
+            "src/ui/format.ts",
+            "src/styles/layout.css",
+            "tests/boss.test.ts"
+          ]
+        },
+        {
+          "id": "6.4",
+          "title": "Mecánicas propias de Cornavid, Geodrón y Marealis",
+          "status": "done",
+          "finishedAt": "2026-10-12T18:51:31Z",
+          "notes": "Cada jefe con su mecánica (GDD): Cornavid rebrota un 5 % cada 10 s, Geodrón levanta cada 15 s un escudo que solo rompen los clics (bloquea golpes automáticos y guarda las habilidades sin gastarlas) y Marealis manda una oleada a todo el equipo cada 20 s. Las mecánicas se disparan por intervalos acumulados, así que una pestaña en segundo plano no se salta ninguna, y se cantan en el cartel de la zona.",
+          "files": [
+            "src/core/combat.ts",
+            "src/data/bosses.ts",
+            "src/data/balance.ts",
+            "src/ui/zonePanel.ts",
+            "src/i18n/es.ts",
+            "tests/boss.test.ts"
+          ]
+        },
+        {
+          "id": "6.5",
+          "title": "Desbloqueos por nivel de entrenador + jefe vencido",
+          "status": "done",
+          "finishedAt": "2026-10-12T18:55:13Z",
+          "notes": "Desbloqueo por nivel + jefe (GDD): zoneBlock dice qué falta y refreshZoneUnlocks se revisa al final de cada tick, así da igual el orden en que lleguen el nivel y el jefe. Una zona abierta no se vuelve a cerrar. El tick devuelve las zonas que se han abierto y el juego las anuncia con un cartel. Las partidas guardadas filtran zonas desconocidas y repetidas.",
+          "files": [
+            "src/core/progression.ts",
+            "src/core/engine.ts",
+            "src/systems/game.ts",
+            "src/persistence/parse.ts",
+            "tests/zoneTravel.test.ts",
+            "tests/persistence.test.ts"
+          ]
+        },
+        {
+          "id": "6.6",
+          "title": "Captura del jefe tras vencerlo y reto de nuevo cada 30 min",
+          "status": "done",
+          "finishedAt": "2026-10-12T18:55:13Z",
+          "notes": "Al vencer a un jefe se queda en la zona como encuentro a 0 PV, que es la forma de capturarlo: el Orbe lunar lo asegura (guaranteesBoss en data/orbs.ts) y los demás no. El enfriamiento de 30 min deja volver a retarlo para farmear sin perder la marca de vencido. Clicar a quien ya cayó ya no promete un combate imposible: avisa de que toca el orbe (wild:needsOrb), y el panel del encuentro cambia titular y pista cuando el rival es un jefe.",
+          "files": [
+            "src/core/combat.ts",
+            "src/core/capture.ts",
+            "src/core/engine.ts",
+            "src/data/orbs.ts",
+            "src/ui/encounterPanel.ts",
+            "src/ui/zonePanel.ts",
+            "src/i18n/es.ts",
+            "tests/boss.test.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Pulido",
+      "status": "pending",
+      "startedAt": null,
+      "finishedAt": null,
+      "tasks": [
+        {
+          "id": "7.1",
+          "title": "data/achievements.ts: ~25 logros con +1 % de producción global",
+          "status": "pending",
+          "finishedAt": null
+        },
+        {
+          "id": "7.2",
+          "title": "Sonido: clic, captura, victoria y ajustes de volumen",
+          "status": "pending",
+          "finishedAt": null
+        },
+        {
+          "id": "7.3",
+          "title": "Ajuste de balance de la curva completa del MVP",
+          "status": "pending",
+          "finishedAt": null
+        },
+        {
+          "id": "7.4",
+          "title": "Adaptación a móvil con pestañas inferiores",
+          "status": "pending",
+          "finishedAt": null
+        },
+        {
+          "id": "7.5",
+          "title": "Pulido de interfaz, accesibilidad y teclado",
+          "status": "pending",
+          "finishedAt": null
+        },
+        {
+          "id": "7.6",
+          "title": "Despliegue en Cloudflare Pages con build automático",
+          "status": "pending",
+          "finishedAt": null
+        },
+        {
+          "id": "7.7",
+          "title": "Barra de XP y consumibles según el documento de diseño",
+          "status": "done",
+          "notes": "Adelanto puntual de la fase 7 pedido por el autor desde el documento de diseño. La barra de XP nunca se veía: .stat hereda align-items:center y en columna dejaba la pista vacía con ancho 0; ahora se estira y se limita a 320 px para no comerse la barra superior. Los consumibles estrenan sprites propios de 16×16 (baya, Poción de prisa y Ración de huerto) con la sombra de apoyo que los distingue de lo permanente, pastillas de compra compactas y fila «Pronto» para los dos que llegan en la fase 7; el aviso decía todavía que la poción venía en la fase 5.",
+          "files": [
+            "src/render/itemSprites.ts",
+            "src/ui/shopPanel.ts",
+            "src/styles/layout.css",
+            "src/i18n/es.ts",
+            "tests/itemSprites.test.ts"
+          ],
+          "finishedAt": "2026-10-12T19:07:38Z"
+        },
+        {
+          "id": "7.8",
+          "title": "Sprites de tienda y escenarios de los seis puestos",
+          "status": "done",
+          "notes": "Segundo adelanto de la fase 7 desde el documento de diseño. Tienda: los cinco guantes comparten silueta y cambian de material (tela, cuero, tachuelas, placas, oro con gema) mediante un overlay sobre un mapa base, más los dos objetos del Rancho (plaza y mejora de puesto). Rancho: el lienzo pasa a ocupar el ancho entero de su tarjeta, y cada parcela pinta el escenario de su puesto —campo, mina, huerto, exploración, taller y guardería— en proporciones de su caja, porque las parcelas cambian de tamaño con la ventana. Las criaturas pisan el suelo que marca su escena y un puesto cerrado deja ver el escenario bajo un velo, con su candado. La zona de clic se ensancha igual que el Rancho: la regla pasa a .stage, así que los dos lienzos ocupan el ancho entero de su tarjeta y cada uno conserva su proporción de referencia (160×160 la zona, 256×160 el Rancho).",
+          "files": [
+            "src/render/postScenes.ts",
+            "src/render/itemSprites.ts",
+            "src/render/ranchScene.ts",
+            "src/ui/shopPanel.ts",
+            "src/styles/layout.css",
+            "tests/postScenes.test.ts",
+            "tests/itemSprites.test.ts"
+          ],
+          "finishedAt": "2026-10-12T19:27:21Z"
+        },
+        {
+          "id": "7.9",
+          "title": "Los guantes dan XP y se limitan a diez compras",
+          "status": "done",
+          "notes": "Ajuste de balance pedido por el autor: la XP subía demasiado despacio. Cada guante suma ahora XP por clic además de monedas (xpBonus en data/items.ts: 6, 8, 10, 12 y 15 % por unidad), así que con los cinco al tope el clic da algo más de seis veces la XP base. El tope de compras (BALANCE.shop.maxUpgradeOwned = 10) se aplica en buyUpgrade con el fallo nuevo «maxed» y lo respeta también el cálculo de XP, de modo que una partida anterior con más unidades no se dispara. Las partidas guardadas no se recortan: conservan lo que compraron, pero no pueden comprar más. De paso, [hidden] pasa a ocultar de verdad en base.css: un display propio ganaba a la regla del navegador y el botón seguía a la vista.",
+          "files": [
+            "src/data/items.ts",
+            "src/data/balance.ts",
+            "src/core/economy.ts",
+            "src/core/engine.ts",
+            "src/ui/shopPanel.ts",
+            "src/i18n/es.ts",
+            "src/styles/base.css",
+            "src/styles/layout.css",
+            "tests/economy.test.ts",
+            "tests/shop.test.ts"
+          ],
+          "finishedAt": "2026-10-12T19:59:15Z"
+        },
+        {
+          "id": "7.10",
+          "title": "La columna de zona ya no se desborda y la cámara se acerca",
+          "status": "done",
+          "notes": "Dos arreglos de interfaz. (1) Con una salvaje en escena y el jefe a tiro, las tarjetas se salían del recuadro de la columna: ahora el lienzo queda fijo arriba y lo de debajo vive en un .column-body con scroll propio, como ya hacían el Rancho y la tienda. (2) El árbol y las criaturas se veían pequeños: la cámara de la zona enmarca 112×112 en vez de la composición de referencia de 160×160, así que el escalado entero sube de ×2 a ×4 y el arte se ve al doble en las tres zonas, sin tocar un solo sprite ni la composición.",
+          "files": [
+            "src/main.ts",
+            "src/styles/layout.css",
+            "src/render/zoneScene.ts",
+            "src/ui/zonePanel.ts"
+          ],
+          "finishedAt": "2026-10-12T20:10:23Z"
+        }
+      ]
+    }
+  ],
+  "log": [
+    {
+      "at": "2026-10-12T20:10:23Z",
+      "phase": 7,
+      "task": "7.10",
+      "message": "Arreglado el desborde de la columna de zona cuando coinciden salvaje y jefe, y acercada la cámara de las tres zonas (de ×2 a ×4)."
+    },
+    {
+      "at": "2026-10-12T19:59:15Z",
+      "phase": 7,
+      "task": "7.9",
+      "message": "Los Guantes de entrenador suman XP por clic y se agotan a las diez compras. 331 tests en verde."
+    },
+    {
+      "at": "2026-10-12T19:27:21Z",
+      "phase": 7,
+      "task": "7.8",
+      "message": "La zona de clic también ocupa todo el ancho de su tarjeta: el tope de 512 px sale de .stage y queda solo la proporción propia de cada lienzo."
+    },
+    {
+      "at": "2026-10-12T19:23:27Z",
+      "phase": 7,
+      "task": "7.8",
+      "message": "Tienda con sprites de guantes y objetos del Rancho; el Rancho ocupa todo el ancho y cada puesto estrena su escenario del documento de diseño. 324 tests en verde."
+    },
+    {
+      "at": "2026-10-12T19:07:38Z",
+      "phase": 7,
+      "task": "7.7",
+      "message": "Implementados desde el documento de diseño la barra de experiencia (no se veía: ancho 0) y los iconos y filas de los consumibles de la tienda. 318 tests en verde."
+    },
+    {
+      "at": "2026-10-12T18:55:13Z",
+      "phase": 6,
+      "task": "6.6",
+      "message": "6.6 lista: el jefe vencido se captura con el Orbe lunar y se puede volver a retar cada 30 min. Fase 6 cerrada con 315 tests en verde."
+    },
+    {
+      "at": "2026-10-12T18:55:13Z",
+      "phase": 6,
+      "task": "6.5",
+      "message": "6.5 lista: la Cueva se abre al nivel 5 con Cornavid vencido y el Lago al 10 con Geodrón."
+    },
+    {
+      "at": "2026-10-12T18:51:31Z",
+      "phase": 6,
+      "task": "6.4",
+      "message": "6.4 lista: rebrote, escudo de piedra y oleada implementados y probados por separado."
+    },
+    {
+      "at": "2026-10-12T18:51:31Z",
+      "phase": 6,
+      "task": "6.3",
+      "message": "6.3 lista: los tres jefes se retan desde su tarjeta, con PV ×10 y enfriamiento de 30 min."
+    },
+    {
+      "at": "2026-10-12T18:40:36Z",
+      "phase": 6,
+      "task": "6.2",
+      "message": "6.2 lista: se viaja entre zonas desde las pestañas y el +25 % del tipo favorecido sigue a la zona activa."
+    },
+    {
+      "at": "2026-10-12T18:34:13Z",
+      "phase": 6,
+      "task": "6.1",
+      "message": "6.1 lista: Cueva y Lago con datos, paleta y objeto clicable propios; el fondo de la Cueva cuelga estalactitas en vez de nubes."
+    },
+    {
+      "at": "2026-10-12T18:31:25Z",
+      "phase": 6,
+      "task": "6.1",
+      "message": "Fase 6 arrancada: la Cueva y el Lago pasan de roster descriptivo a zonas jugables."
+    },
+    {
+      "at": "2026-10-12T18:25:00.000Z",
+      "phase": 5,
+      "task": "5.9",
+      "message": "Botón «Retar con el equipo» arreglado: condiciones de activación alineadas con startBattle, motivo visible en el cartel, guarda en core contra la salvaje debilitada y contraste correcto al estar deshabilitado. 267 tests en verde."
+    },
+    {
+      "at": "2026-10-12T13:25:00.000Z",
+      "phase": 5,
+      "task": "5.8",
+      "message": "Fase 5 cerrada: 266 tests en verde, lint y build limpios. Combate verificado en navegador (habilidades, bayas, derrota y raras que exigen pelea)."
+    },
+    {
+      "at": "2026-10-12T13:25:00.000Z",
+      "phase": 5,
+      "task": "5.8",
+      "message": "Las raras y mejores ya no se debilitan a clics: el clic abre el combate y sin equipo avisa con un cartel. Tarea nueva anotada en el plan."
+    },
+    {
+      "at": "2026-10-12T13:25:00.000Z",
+      "phase": 5,
+      "task": "5.5",
+      "message": "Verificado en navegador el camino de habilidades y bayas: carga al 100 %, danio al enemigo, carga reiniciada y curacion del 30 %."
+    },
+    {
+      "at": "2026-10-12T12:58:36.987Z",
+      "phase": 5,
+      "task": "5.1",
+      "message": "Arranca la fase 5: tabla de tipos, combate automatico por ticks, habilidades activas, bayas en combate y panel de equipo."
+    },
+    {
+      "at": "2026-10-12T12:52:21.287Z",
+      "phase": 4,
+      "task": "4.14",
+      "message": "Sprites nuevos verificados ya en el juego: el Rancho se ataba a escala x1 y ahora respeta la composicion 256x160 a x2, con las criaturas legibles en sus parcelas."
+    },
+    {
+      "at": "2026-10-12T12:44:33.244Z",
+      "phase": 4,
+      "task": "4.14",
+      "message": "Criaturas con arte dibujado a mano: 15 mapas de 16×16 con su paleta, más 10 tests que vigilan tamaño, claves y que el contorno nunca sea negro. Revisadas en una hoja de contactos PNG generada con Node, porque la extensión de Chrome se desconectó."
+    },
+    {
+      "at": "2026-10-12T09:05:25.015Z",
+      "phase": 4,
+      "task": "4.13",
+      "message": "Bug encontrado por el autor y arreglado: comprar plazas, mejoras de puesto y bayas no hacía nada porque la lista se reconstruía diez veces por segundo y el clic se perdía. Verificado en Chrome con pointerdown y pointerup separados por 250 ms."
+    },
+    {
+      "at": "2026-10-12T08:59:47.925Z",
+      "phase": 4,
+      "task": "4.12",
+      "message": "Bloqueo resuelto: la sección de dirección visual del GDD y de CLAUDE.md se reescribe con «Pastel moderno» —paleta clara y su variante oscura, radios y sombras, Outfit + Plus Jakarta Sans + Pixelify solo en el arte, y el layout de HUD y tres tarjetas."
+    },
+    {
+      "at": "2026-10-12T08:56:28.926Z",
+      "phase": 4,
+      "task": "4.12",
+      "message": "Cambio de dirección visual pedido por el autor con un artefacto de referencia: de la consola oscura del GDD a «Pastel moderno» claro. Atención: la sección de dirección visual del GDD y de CLAUDE.md se han quedado desfasadas."
+    },
+    {
+      "at": "2026-10-12T08:22:53.585Z",
+      "phase": 4,
+      "task": "4.11",
+      "message": "A petición del autor, los mensajes salen dentro de la zona: cartel en pixel art arriba del canvas. Verificado en Chrome con la aparición, la huida y la derrota."
+    },
+    {
+      "at": "2026-10-12T08:09:59.842Z",
+      "phase": 4,
+      "task": "4.10",
+      "message": "A petición del autor, el Campo de recolección se ve: el árbol se sacude y suelta partículas al ritmo del CPS. Verificado en Chrome con 0, 1,3 y 75 clics/s (los topes evitan la tormenta de partículas)."
+    },
+    {
+      "at": "2026-10-12T08:01:13.976Z",
+      "phase": 4,
+      "task": "4.9",
+      "message": "Pulido pedido por el autor: botones de orbe con el dibujo del orbe y barra superior rehecha en pastillas; la barra de nivel ya no se sale del marco (verificado de 480 a 2560 px de ancho)."
+    },
+    {
+      "at": "2026-10-12T00:30:25.179Z",
+      "phase": 4,
+      "task": "4.7",
+      "message": "Agujero encontrado probando en el navegador y cerrado: con la pestaña en segundo plano el tick acumulaba horas y las pagaba al 100 %, saltándose la regla del offline. Ahora un hueco largo se liquida al 50 % y con tope de 8 h, con sus tests."
+    },
+    {
+      "at": "2026-10-12T00:30:25.179Z",
+      "phase": 4,
+      "task": "4.3",
+      "message": "El GDD solo fija el CPS (0,5 por punto de aptitud); el rendimiento de Mina, Huerto, Taller, Exploración y Guardería son valores de arranque en data/balance.ts, listos para ajustar."
+    },
+    {
+      "at": "2026-10-12T00:30:25.179Z",
+      "phase": 4,
+      "task": "4.8",
+      "message": "Fase 4 cerrada y verificada en Chrome: 2 criaturas en el Campo dan 2,1 clics/s, la Mina +22 % por clic, el Huerto 1,4 bayas/min con la sinergia Agua + Planta, el comedero alimenta solo y tres horas fuera pagan 17,3 K. 220 tests en verde."
+    },
+    {
+      "at": "2026-10-12T00:11:48.871Z",
+      "phase": 4,
+      "task": "4.1",
+      "message": "Arranca la fase 4: los seis puestos del Rancho, producción pasiva, saciedad y bayas, niveles de criatura, sinergias y progreso offline."
+    },
+    {
+      "at": "2026-10-12T00:08:21.474Z",
+      "phase": 3,
+      "task": "3.11",
+      "message": "XP por pelear a petición del autor: una Brotillo común da 0,2 XP por golpe, 3 al rematarla (6 en total) y 10 si la capturas. Verificado en Chrome con los números flotantes y la barra de XP. 170 tests en verde."
+    },
+    {
+      "at": "2026-10-11T23:59:10.816Z",
+      "phase": 3,
+      "task": "3.10",
+      "message": "Corrección y animación pedidas por el autor: el árbol ya apoya en el suelo (los sprites se alinean por su base pintada) y lanzar un orbe tiene animación en cuatro tramos. Verificado en Chrome fotograma a fotograma, tanto la captura como el escape."
+    },
+    {
+      "at": "2026-10-11T23:47:02.554Z",
+      "phase": 3,
+      "task": "3.9",
+      "message": "Mecánica nueva a petición del autor: rematar a la salvaje a clics la mata y paga monedas (una Brotillo da 23 con el clic base). Verificado en Chrome: 14 golpes la dejan a 1 PV con aviso en rojo y el siguiente la derrota. 162 tests en verde."
+    },
+    {
+      "at": "2026-10-11T23:34:36.646Z",
+      "phase": 3,
+      "task": "3.2",
+      "message": "Apaño temporal anotado: el GDD manda las raras a combate, que no existe hasta la fase 5, así que de momento también se debilitan a clics para que una aparición rara no sea un callejón sin salida."
+    },
+    {
+      "at": "2026-10-11T23:34:36.646Z",
+      "phase": 3,
+      "task": "3.1",
+      "message": "Cambio de plan: data/zones.ts gana los identificadores de las tres zonas como contenido (ZONE_ROSTER_IDS) para poder fichar a las 15 especies; jugable sigue siendo solo la Pradera hasta la fase 6."
+    },
+    {
+      "at": "2026-10-11T23:34:36.646Z",
+      "phase": 3,
+      "task": "3.7",
+      "message": "Fase 3 cerrada y verificada en Chrome: aparición, debilitar a clics (15 → 3 PV y la captura sube del 40 % al 88 %), captura de una Chispín variocolor con +60 XP, desbordamiento a la Reserva y ficha de ejemplar. 154 tests en verde y cobertura del 99,6 % en core/ y persistence/."
+    },
+    {
+      "at": "2026-10-11T23:17:05.130Z",
+      "phase": 3,
+      "task": "3.1",
+      "message": "Corrección pedida por el autor antes de empezar: el canvas de zona pasa a cubrir su caja entera. Se mantiene el escalado entero; la composición 160×160 del GDD queda como referencia y el búfer se estira al hueco disponible."
+    },
+    {
+      "at": "2026-10-11T23:10:42.185Z",
+      "phase": 2,
+      "task": "2.8",
+      "message": "Fase 2 cerrada: tienda con pestañas, guantes a 1,15^n, tabla de desbloqueos, exportar/importar en Base64 y migración v1 → v2. 97 tests en verde."
+    },
+    {
+      "at": "2026-10-11T23:10:42.185Z",
+      "phase": 2,
+      "task": "2.7",
+      "message": "Verificado en Chrome: exportar, jugar, importar y volver al estado exportado; un código inválido avisa sin tocar la partida."
+    },
+    {
+      "at": "2026-10-11T23:02:13.536Z",
+      "phase": 2,
+      "task": "2.1",
+      "message": "Decisión del autor sobre el hueco del GDD: Guantes I–V son cinco artículos repetibles de bonus plano (+1, +5, +25, +120, +600) desbloqueados por nivel; el Cebo dorado se pospone a la fase 3 con el botín."
+    },
+    {
+      "at": "2026-10-11T22:53:42.567Z",
+      "phase": 1,
+      "task": "1.11",
+      "message": "Fase 1 cerrada: el juego arranca, el árbol de la Pradera da monedas y XP con feedback, y la partida se guarda y se recupera."
+    },
+    {
+      "at": "2026-10-11T22:53:42.567Z",
+      "phase": 1,
+      "task": "1.8",
+      "message": "Cambio de plan: el autoguardado (tarea 2.6) se adelanta a la fase 1 porque la regla 5 de arquitectura lo pide y el repositorio no tenía quien lo llamara."
+    },
+    {
+      "at": "2026-10-11T22:53:42.567Z",
+      "phase": 1,
+      "task": "1.10",
+      "message": "Verificado en Chrome sobre el servidor de desarrollo: 100 clics dan 100 monedas, suben a nivel 2 y los clics fuera del árbol no cuentan."
+    },
+    {
+      "at": "2026-10-11T22:53:42.567Z",
+      "phase": 1,
+      "task": "1.3",
+      "message": "Dashboard en marcha en /dashboard/, fuera del build de producción (dist/ solo lleva el juego)."
+    },
+    {
+      "at": "2026-10-11T22:33:03.026Z",
+      "phase": 1,
+      "task": "1.1",
+      "message": "Plan inicial: 7 fases desglosadas en 54 tareas a partir de CLAUDE.md y docs/GDD.md."
+    }
+  ],
+  "blockers": []
+}

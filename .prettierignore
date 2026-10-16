@@ -1,0 +1,9 @@
+dist
+coverage
+node_modules
+progress/
+package-lock.json
+
+# Documentos del autor: Prettier no los toca.
+CLAUDE.md
+docs/

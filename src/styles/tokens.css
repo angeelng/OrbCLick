@@ -1,0 +1,138 @@
+/*
+ * Dirección visual «Pastel moderno»: el arte sigue siendo pixel art, pero la
+ * interfaz que lo rodea es clara y actual — superficies casi blancas, líneas
+ * de 1 px, sombras difusas y una pastilla de acento.
+ *
+ * La paleta tiene variante oscura, que entra sola con el tema del sistema o
+ * forzando `data-theme` en el elemento raíz.
+ */
+:root {
+  color-scheme: light dark;
+
+  /* Superficies */
+  --color-bg: #f6f3fa;
+  --color-canvas: #efeaf7;
+  --color-panel: #ffffff;
+  --color-panel-raised: #faf8fd;
+  --color-surface-3: #f2edf8;
+  --color-border: #ece5f4;
+  --color-border-strong: #ded4ec;
+
+  /* Texto */
+  --color-text: #2b2436;
+  --color-text-soft: #594e6b;
+  --color-text-muted: #847a96;
+
+  /* Acentos */
+  --color-accent: #8777e5;
+  --color-accent-soft: #eeeafd;
+  --color-coins: #d9a33f;
+  --color-coins-soft: #faf0d9;
+  --color-success: #45b88a;
+  --color-danger: #e87f96;
+
+  /* Tipos de criatura, en pastel */
+  --type-plant: #8fc47e;
+  --type-fire: #e98f5f;
+  --type-water: #74aedc;
+  --type-rock: #bca383;
+  --type-electric: #d9bf52;
+  --type-air: #9ec2d6;
+
+  /* Tipografía: Outfit titula, Jakarta habla y Pixelify solo entra en el arte */
+  --font-display: Outfit, 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-pixel: 'Pixelify Sans', ui-monospace, monospace;
+
+  /* Ritmo */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* Formas */
+  --radius-s: 8px;
+  --radius: 12px;
+  --radius-l: 18px;
+  --radius-xl: 24px;
+  --border: 1px solid var(--color-border);
+
+  /* Sombras difusas, nunca duras */
+  --shadow-1: 0 1px 2px rgb(43 36 54 / 5%);
+  --shadow-2: 0 1px 2px rgb(43 36 54 / 5%), 0 12px 26px -14px rgb(43 36 54 / 22%);
+  --shadow-3: 0 2px 4px rgb(43 36 54 / 6%), 0 26px 50px -22px rgb(43 36 54 / 30%);
+
+  /* Layout de escritorio: zona · Rancho · tienda */
+  --layout-zone: 1fr;
+  --layout-ranch: 1.14fr;
+  --layout-shop: 1fr;
+  --topbar-height: 64px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: #141120;
+    --color-canvas: #1a1628;
+    --color-panel: #1e1a2c;
+    --color-panel-raised: #241f34;
+    --color-surface-3: #2b2540;
+    --color-border: #302949;
+    --color-border-strong: #3c3458;
+
+    --color-text: #f1ecf9;
+    --color-text-soft: #cfc6e2;
+    --color-text-muted: #9d93b5;
+
+    --color-accent: #a596f2;
+    --color-accent-soft: #2c2550;
+    --color-coins: #e2b65c;
+    --color-coins-soft: #3a2f1c;
+    --color-success: #63c9a2;
+    --color-danger: #ee93a8;
+
+    --type-plant: #93c882;
+    --type-fire: #e89763;
+    --type-water: #7fb6e2;
+    --type-rock: #c3ab8b;
+    --type-electric: #dec65c;
+    --type-air: #a6c8db;
+
+    --shadow-1: 0 1px 2px rgb(0 0 0 / 35%);
+    --shadow-2: 0 1px 2px rgb(0 0 0 / 35%), 0 14px 30px -16px rgb(0 0 0 / 70%);
+    --shadow-3: 0 2px 6px rgb(0 0 0 / 40%), 0 28px 54px -24px rgb(0 0 0 / 80%);
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #141120;
+  --color-canvas: #1a1628;
+  --color-panel: #1e1a2c;
+  --color-panel-raised: #241f34;
+  --color-surface-3: #2b2540;
+  --color-border: #302949;
+  --color-border-strong: #3c3458;
+
+  --color-text: #f1ecf9;
+  --color-text-soft: #cfc6e2;
+  --color-text-muted: #9d93b5;
+
+  --color-accent: #a596f2;
+  --color-accent-soft: #2c2550;
+  --color-coins: #e2b65c;
+  --color-coins-soft: #3a2f1c;
+  --color-success: #63c9a2;
+  --color-danger: #ee93a8;
+
+  --type-plant: #93c882;
+  --type-fire: #e89763;
+  --type-water: #7fb6e2;
+  --type-rock: #c3ab8b;
+  --type-electric: #dec65c;
+  --type-air: #a6c8db;
+
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 35%);
+  --shadow-2: 0 1px 2px rgb(0 0 0 / 35%), 0 14px 30px -16px rgb(0 0 0 / 70%);
+  --shadow-3: 0 2px 6px rgb(0 0 0 / 40%), 0 28px 54px -24px rgb(0 0 0 / 80%);
+}
